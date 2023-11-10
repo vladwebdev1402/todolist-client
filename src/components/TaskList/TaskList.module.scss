@@ -1,0 +1,24 @@
+.wrapper {
+    background-color: var(--black-50);
+    width: 100%;
+    border-radius: 20px;
+    padding: 15px;
+    position: relative;
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+}   
+
+.taskList__empty__txt, .error_txt {
+    display: none;
+    text-align: center;
+    font-size: 60px;
+    color: var(--white);
+}
+.error_txt {
+    display: block;
+}

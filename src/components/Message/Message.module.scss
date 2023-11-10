@@ -1,0 +1,12 @@
+.message {
+    padding: 8px;
+    max-width: 40%;
+    border-radius: 10px;
+    background-color: var(--gray);
+    align-self: flex-start;
+    color: var(--white)
+}
+
+.message_my {
+    align-self: flex-end;    
+}

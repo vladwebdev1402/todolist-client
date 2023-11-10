@@ -1,0 +1,12 @@
+.form {
+    display: flex;
+}
+
+.form__input {
+    height: inherit !important;
+    flex: 0 1 100%;
+}
+.form__submit {
+    height: inherit !important;
+    max-width: 150px;
+}

@@ -1,0 +1,31 @@
+.deteleIcon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    transition: .3s;
+        &::after, &::before {
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: 20px;
+        border-radius: 5px;
+        top: 0;
+        left: 50%;
+        background-color: var(--black-50);
+        transition: .3s;
+}
+
+    &::after {
+        transform: translateX(-50%) rotate(45deg);
+    }
+    &::before {
+        transform: translateX(-50%) rotate(-45deg);
+    }
+}
+
+.completeIcon {
+    transition: .3s;
+    path, rect {
+        transition: .3s;
+    }
+}

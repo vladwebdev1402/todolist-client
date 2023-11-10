@@ -1,0 +1,39 @@
+:root {
+    --white: #ffffff;
+    --orange: #bb8c5f;
+    --dark-orange: #524336;
+    --black-100: #18181b;
+    --black-50: #252532;
+    --red: #FF4747;
+    --dark-red: #ff0000;
+    --green: #50c878;
+    --dark-green: #2F7847;
+    --gray: #7e7a7a;
+    --light-gray: #aaa5a5;
+    --voilet: #8732c1;
+    --dark-voilet: #4b2e55;
+    --transition: 0.5s;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+body {
+    background-color: var(--black-100);
+    font-family: "Open Sans";
+}
+
+h1 {
+    color: var(--white);
+}
