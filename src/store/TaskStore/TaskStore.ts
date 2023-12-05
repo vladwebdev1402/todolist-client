@@ -7,14 +7,15 @@ class TaskStore {
   tasks: ITask[] = [];
   isLoading = false;
   error = false;
-
+  
   constructor() {
     makeAutoObservable(this);
   }
 
   deleteTask = async (id: number) => {
     try {
-      await TaskApi.fetchDeleteTask(id);
+      const token = localStorage.getItem("token")?.replaceAll('"', "");
+      await TaskApi.fetchDeleteTask(id, token ?? "");
       runInAction(() => {
         this.tasks = this.tasks.filter((tasks) => tasks.id !== id);
       });
@@ -27,7 +28,8 @@ class TaskStore {
 
   completeTask = async (task: ITask) => {
     try {
-      await TaskApi.fetchCompleteTask(task, !task.completed);
+      const token = localStorage.getItem("token")?.replaceAll('"', "");
+      await TaskApi.fetchCompleteTask(task, !task.completed, token ?? "");
       runInAction(() => {
         task.completed = !task.completed;
       });
@@ -40,7 +42,8 @@ class TaskStore {
 
   editTask = async (task: ITask, name: string, desc: string) => {
     try {
-      await TaskApi.fetchEditTask(task, name, desc);
+      const token = localStorage.getItem("token")?.replaceAll('"', "");
+      await TaskApi.fetchEditTask(task, name, desc, token ?? "");
       runInAction(() => {
         task.name = name;
         task.desc = desc;
@@ -52,7 +55,8 @@ class TaskStore {
 
   addTask = async (task: ITask) => {
     try {
-      const newTask = await TaskApi.fetchAddTask(task);
+      const token = localStorage.getItem("token")?.replaceAll('"', "");
+      const newTask = await TaskApi.fetchAddTask(task, token ?? "");
       runInAction(() => {
         this.tasks.push(newTask);
       });
@@ -65,7 +69,8 @@ class TaskStore {
 
   fetchTask = async () => {
     try {
-      const tasks = await TaskApi.fetchAllTask();
+      const token = localStorage.getItem("token")?.replaceAll('"', "");
+      const tasks = await TaskApi.fetchAllTask(token ?? "");
       runInAction(() => {
         this.tasks = tasks;
         this.isLoading = true;

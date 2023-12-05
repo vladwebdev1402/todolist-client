@@ -1,0 +1,38 @@
+.sign {
+    margin: 100px auto 0 auto;
+    max-width: 400px;
+
+}
+
+.sign__head {
+    text-align: center;
+    color: var(--white);
+    font-size:25px;
+    font-weight: 500;
+}
+
+.sign__body {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sign__input {
+    width: 100%;
+}
+
+.message {
+    margin-top: 5px;
+    text-align: center;
+    color: var(--white);
+    font-size: 17px;
+}
+
+.sign__to_login {
+    color: var(--white);
+    font-size: 15px;
+    a {
+        color: var(--white);
+    }
+}
