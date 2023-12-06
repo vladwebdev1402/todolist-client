@@ -54,7 +54,9 @@ const TaskList: FC<Props> = observer(({ className = "" }) => {
       )}
 
       {taskStore.isLoading && taskStore.error ? (
-        <div className={st.error_txt}>На сервере произошла ошибка</div>
+        <div className={st.error_txt}>
+          На сервере произошла ошибка: {taskStore.error}
+        </div>
       ) : (
         <></>
       )}

@@ -11,17 +11,19 @@ const MainPage = () => {
     <>
       <TaskForm className={st.form} />
       <TaskList className={st.wrapper} />
-      <Button onClick={() => navigate("chat")} className={st.btn__chat}>
-        Перейти в чат
-      </Button>
-      <Button
-        onClick={() => {
-          AuthStore.logout();
-        }}
-        className={st.btn__chat}
-      >
-        Выйти из аккаунта
-      </Button>
+      <div className={st.options}>
+        <Button onClick={() => navigate("chat")} className={st.btn__chat}>
+          Перейти в чат
+        </Button>
+        <Button
+          onClick={() => {
+            AuthStore.logout();
+          }}
+          className={st.btn__chat}
+        >
+          Выйти из аккаунта
+        </Button>
+      </div>
     </>
   );
 };

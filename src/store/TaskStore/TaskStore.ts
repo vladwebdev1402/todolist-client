@@ -6,7 +6,7 @@ import TaskApi from "../../api/TaskApi";
 class TaskStore {
   tasks: ITask[] = [];
   isLoading = false;
-  error = false;
+  error = "";
   
   constructor() {
     makeAutoObservable(this);
@@ -17,11 +17,13 @@ class TaskStore {
       const token = localStorage.getItem("token")?.replaceAll('"', "");
       await TaskApi.fetchDeleteTask(id, token ?? "");
       runInAction(() => {
+        this.error = "";
         this.tasks = this.tasks.filter((tasks) => tasks.id !== id);
       });
-    } catch {
+    } catch (e) {
       runInAction(() => {
-        this.error = true;
+        if (typeof e === "string")  this.error = e.toUpperCase();
+        else if (e instanceof Error) this.error = e.message;
       });
     }
   };
@@ -31,11 +33,13 @@ class TaskStore {
       const token = localStorage.getItem("token")?.replaceAll('"', "");
       await TaskApi.fetchCompleteTask(task, !task.completed, token ?? "");
       runInAction(() => {
+        this.error = "";
         task.completed = !task.completed;
       });
-    } catch {
+    } catch (e) {
       runInAction(() => {
-        this.error = true;
+        if (typeof e === "string")  this.error = e.toUpperCase();
+        else if (e instanceof Error) this.error = e.message;
       });
     }
   };
@@ -45,11 +49,15 @@ class TaskStore {
       const token = localStorage.getItem("token")?.replaceAll('"', "");
       await TaskApi.fetchEditTask(task, name, desc, token ?? "");
       runInAction(() => {
+        this.error = "";
         task.name = name;
         task.desc = desc;
       });
-    } catch (err) {
-      runInAction(() => (this.error = true));
+    } catch (e) {
+      runInAction(() => {
+        if (typeof e === "string")  this.error = e.toUpperCase();
+        else if (e instanceof Error) this.error = e.message;
+      });
     }
   };
 
@@ -58,26 +66,31 @@ class TaskStore {
       const token = localStorage.getItem("token")?.replaceAll('"', "");
       const newTask = await TaskApi.fetchAddTask(task, token ?? "");
       runInAction(() => {
+        this.error = "";
         this.tasks.push(newTask);
       });
-    } catch (err) {
+    } catch (e) {
       runInAction(() => {
-        this.error = true;
+        if (typeof e === "string")  this.error = e.toUpperCase();
+        else if (e instanceof Error) this.error = e.message;
       });
     }
   };
 
   fetchTask = async () => {
     try {
-      const token = localStorage.getItem("token")?.replaceAll('"', "");
+        this.isLoading = false;
+        const token = localStorage.getItem("token")?.replaceAll('"', "");
       const tasks = await TaskApi.fetchAllTask(token ?? "");
       runInAction(() => {
+        this.error = "";
         this.tasks = tasks;
         this.isLoading = true;
       });
-    } catch (err) {
+    } catch (e) {
       runInAction(() => {
-        this.error = true;
+        if (typeof e === "string")  this.error = e.toUpperCase();
+        else if (e instanceof Error) this.error = e.message;
         this.isLoading = true;
       });
     }

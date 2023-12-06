@@ -9,6 +9,7 @@ class TaskApi {
             "Authorization": `Bearer ${token}`,
           }
         })
+        if (response.status !== 200) throw new Error(await response.json().then(res => res.message));
         const data = await response.json()
         return data
     }
@@ -22,6 +23,7 @@ class TaskApi {
           "Authorization": `Bearer ${token}`,
         }
       })
+      if (response.status !== 200) throw new Error(await response.json().then(res => res.message));
       const data = await response.json();
       return data;
     }
@@ -39,6 +41,7 @@ class TaskApi {
             "Authorization": `Bearer ${token}`,
           }
           })
+          if (response.status !== 200) throw new Error(await response.json().then(res => res.message));
       return await response.json();
     }
 
@@ -55,8 +58,8 @@ class TaskApi {
             "Authorization": `Bearer ${token}`,
           }
           })
+          if (response.status !== 200) throw new Error(await response.json().then(res => res.message));
       return await response.json();
-      
     }
 
     static fetchDeleteTask = async (id: number, token: string) => {
@@ -70,6 +73,7 @@ class TaskApi {
           "Authorization": `Bearer ${token}`,
         }
       })
+      if (response.status !== 200) throw new Error(await response.json().then(res => res.message));
       return await response.json();
     }
    
