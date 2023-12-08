@@ -95,7 +95,15 @@ class TaskStore {
       });
     }
   };
+
+  logout = () => {
+    this.tasks = [];
+    this.error = "";
+    this.isLoading = false;
+  }
 }
+
+
 
 const taskStore = new TaskStore();
 

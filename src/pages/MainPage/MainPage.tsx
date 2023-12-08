@@ -5,6 +5,7 @@ import TaskForm from "../../components/TaskForm/TaskForm";
 import Button from "../../ui/button/Button/Button";
 import { useNavigate } from "react-router-dom";
 import AuthStore from "../../store/AuthStore/AuthStore";
+import taskStore from "../../store/TaskStore/TaskStore";
 const MainPage = () => {
   const navigate = useNavigate();
   return (
@@ -18,6 +19,7 @@ const MainPage = () => {
         <Button
           onClick={() => {
             AuthStore.logout();
+            taskStore.logout();
           }}
           className={st.btn__chat}
         >
